@@ -12,51 +12,42 @@
  */
 params ["_HQ", "_cycleC", "_lastReset"];
 
-private _SCRname = "SQ";
 private _orderFirst = _HQ getVariable QGVAR(orderfirst);
 
-if (isNil ("_orderFirst")) then
-    {
+if (isNil ("_orderFirst")) then {
     _HQ setVariable [QGVAR(orderfirst),true];
     _HQ setVariable [QGVAR(flankReady),false];
-    };
+};
 
-if (_cycleC > 1) then
-    {
-    if not (_HQ getVariable [QEGVAR(core,resetOnDemand),false]) then
-        {
-        if ((time - _lastReset) > (_HQ getVariable [QEGVAR(core,resetTime),600])) then
-            {
+if (_cycleC > 1) then {
+    if !(_HQ getVariable [QEGVAR(core,resetOnDemand), false]) then {
+        if ((time - _lastReset) > (_HQ getVariable [QEGVAR(core,resetTime),600])) then {
             _lastReset = time;
             [_HQ] call EFUNC(hac,hqReset)
-            }
-        }
-    else
-        {
-        private _code =
-            {
-            _HQ = _this select 0;
+        };
+    } else {
+        private _code = {
+            params ["_HQ"];
 
-            waitUntil
-                {
+            //basically CBA_WUAE
+            waitUntil {
                 sleep 1;
                 ((_HQ getVariable [QEGVAR(core,resetNow),false]) or (_HQ getVariable [QEGVAR(common,kIA),false]))
-                };
-
-            _HQ setVariable [QEGVAR(core,resetNow),false];
-            [_HQ] call EFUNC(hac,hqReset)
             };
 
-        [[_HQ],_code] call EFUNC(common,spawn);
+            _HQ setVariable [QEGVAR(core,resetNow), false];
+            [_HQ] call EFUNC(hac,hqReset)
         };
 
+        [[_HQ], _code] call EFUNC(common,spawn);
     };
+};
 
-_HQ setVariable [QEGVAR(core,friends),[]];
-_HQ setVariable [QGVAR(enemies),[]];
-_HQ setVariable [QEGVAR(core,knEnemies),[]];
-_HQ setVariable [QEGVAR(common,knEnemiesG),[]];
-_HQ setVariable [QEGVAR(boss,fValue),0];
-_HQ setVariable [QEGVAR(boss,eValue),0];
+_HQ setVariable [QEGVAR(core,friends), []];
+_HQ setVariable [QGVAR(enemies), []];
+_HQ setVariable [QEGVAR(core,knEnemies), []];
+_HQ setVariable [QEGVAR(common,knEnemiesG), []];
+_HQ setVariable [QEGVAR(boss,fValue), 0];
+_HQ setVariable [QEGVAR(boss,eValue), 0];
 
 _lastReset

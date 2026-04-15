@@ -10,6 +10,4 @@
  */
 params [["_group", grpNull, [grpNull]]];
 
-// Phase 1: deliberately does nothing. Legacy behavior preserved by the
-// nr6_hal/ layer still loaded in parallel until Phase 5 cutover.
-nil
+[_group] call CBA_fnc_clearWaypoints;

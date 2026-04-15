@@ -59,7 +59,7 @@ GVAR(hQChat) = missionNamespace getVariable [QGVAR(hQChat),true];
 publicVariable QGVAR(hQChat);
 GVAR(aIChatDensity) = missionNamespace getVariable [QGVAR(aIChatDensity),100];
 publicVariable QGVAR(aIChatDensity);
-GVAR(aIChat_Type) = missionNamespace getVariable [QGVAR(aIChat_Type),100];
+GVAR(aIChat_Type) = missionNamespace getVariable [QGVAR(aIChat_Type), "NONE"];
 publicVariable QGVAR(aIChat_Type);
 GVAR(garrisonV2) = missionNamespace getVariable [QGVAR(garrisonV2),true];
 publicVariable QGVAR(garrisonV2);

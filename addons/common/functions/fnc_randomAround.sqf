@@ -11,6 +11,4 @@
  */
 params [["_center", [0, 0, 0], [[]]], ["_radius", 0, [0]]];
 
-// Phase 1: return center unchanged. Legacy RYD_RandomAround still runs via
-// nr6_hal/ layer until Phase 5 cutover.
-_center
+[_center, _radius] call FUNC(positionAround)

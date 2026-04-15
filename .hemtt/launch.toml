@@ -1,4 +1,7 @@
 [default]
 workshop = [
     "450814997", # CBA_A3
+    "1779063631", # Zen
+    "3499977893", # Advanced Dev Tools
 ]
+mission = "test_hal_basic.Stratis"

@@ -102,8 +102,8 @@ private _OtherG = [];
 private _CrewG = [];
 private _NCrewInfG = [];
 
+{
     {
-        {
         private _SpecForcheck = false;
         private _reconcheck = false;
         private _FOcheck = false;
@@ -144,68 +144,66 @@ private _NCrewInfG = [];
         private _Tvh = toLower (typeOf _vh);
         private _TasV = toLower (typeOf _asV);
 
-            if (((_grp == _grpD) and {(_Tvh in _specFor_class)}) or {(_tp in _specFor_class)}) then {_SpecForcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _recon_class)}) or {(_tp in _recon_class)}) then {_reconcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _FO_class)}) or {(_tp in _FO_class)}) then {_FOcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _snipers_class)}) or {(_tp in _snipers_class)}) then {_sniperscheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _ATinf_class)}) or {(_tp in _ATinf_class)}) then {_ATinfcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _AAinf_class)}) or {(_tp in _AAinf_class)}) then {_AAinfcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _Inf_class)}) or {(_tp in _Inf_class)}) then {_Infcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _Art_class)}) or {(_tp in _Art_class)}) then {_Artcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _HArmor_class)}) or {(_tp in _HArmor_class)}) then {_HArmorcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _MArmor_class)}) or {(_tp in _MArmor_class)}) then {_MArmorcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _LArmor_class)}) or {(_tp in _LArmor_class)}) then {_LArmorcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _LArmorAT_class)}) or {(_tp in _LArmorAT_class)}) then {_LArmorATcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _Cars_class)}) or {(_tp in _Cars_class)}) then {_Carscheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _Air_class)}) or {(_tp in _Air_class)}) then {_Aircheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _BAir_class)}) or {(_tp in _BAir_class)}) then {_BAircheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _RAir_class)}) or {(_tp in _RAir_class)}) then {_RAircheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _NCAir_class)}) or {(_tp in _NCAir_class)}) then {_NCAircheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _Naval_class)}) or {(_tp in _Naval_class)}) then {_Navalcheck = true;_Othercheck = false};
-            if (((_grp == _grpG) and {(_Tvh in _Static_class)}) or {(_tp in _Static_class)}) then {_Staticcheck = true;_Othercheck = false};
-            if (((_grp == _grpG) and {(_Tvh in _StaticAA_class)}) or {(_tp in _StaticAA_class)}) then {_StaticAAcheck = true;_Othercheck = false};
-            if (((_grp == _grpG) and {(_Tvh in _StaticAT_class)}) or {(_tp in _StaticAT_class)}) then {_StaticATcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _Cargo_class)}) or {(_tp in _Cargo_class)}) then {_Cargocheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _NCCargo_class)}) or {(_tp in _NCCargo_class)}) then {_NCCargocheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _Crew_class)}) or {(_tp in _Crew_class)}) then {_Crewcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _NCrewInf_class)}) or {(_tp in _NCrewInf_class)}) then {_NCrewInfcheck = true;_Othercheck = false};
-            if (((_grp == _grpD) and {(_Tvh in _Support_class)}) or {(_tp in _Support_class)}) then {_Supportcheck = true;_NCrewInfcheck = false;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _specFor_class)}) or {(_tp in _specFor_class)}) then {_SpecForcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _recon_class)}) or {(_tp in _recon_class)}) then {_reconcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _FO_class)}) or {(_tp in _FO_class)}) then {_FOcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _snipers_class)}) or {(_tp in _snipers_class)}) then {_sniperscheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _ATinf_class)}) or {(_tp in _ATinf_class)}) then {_ATinfcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _AAinf_class)}) or {(_tp in _AAinf_class)}) then {_AAinfcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _Inf_class)}) or {(_tp in _Inf_class)}) then {_Infcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _Art_class)}) or {(_tp in _Art_class)}) then {_Artcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _HArmor_class)}) or {(_tp in _HArmor_class)}) then {_HArmorcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _MArmor_class)}) or {(_tp in _MArmor_class)}) then {_MArmorcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _LArmor_class)}) or {(_tp in _LArmor_class)}) then {_LArmorcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _LArmorAT_class)}) or {(_tp in _LArmorAT_class)}) then {_LArmorATcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _Cars_class)}) or {(_tp in _Cars_class)}) then {_Carscheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _Air_class)}) or {(_tp in _Air_class)}) then {_Aircheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _BAir_class)}) or {(_tp in _BAir_class)}) then {_BAircheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _RAir_class)}) or {(_tp in _RAir_class)}) then {_RAircheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _NCAir_class)}) or {(_tp in _NCAir_class)}) then {_NCAircheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _Naval_class)}) or {(_tp in _Naval_class)}) then {_Navalcheck = true;_Othercheck = false};
+        if (((_grp == _grpG) and {(_Tvh in _Static_class)}) or {(_tp in _Static_class)}) then {_Staticcheck = true;_Othercheck = false};
+        if (((_grp == _grpG) and {(_Tvh in _StaticAA_class)}) or {(_tp in _StaticAA_class)}) then {_StaticAAcheck = true;_Othercheck = false};
+        if (((_grp == _grpG) and {(_Tvh in _StaticAT_class)}) or {(_tp in _StaticAT_class)}) then {_StaticATcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _Cargo_class)}) or {(_tp in _Cargo_class)}) then {_Cargocheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _NCCargo_class)}) or {(_tp in _NCCargo_class)}) then {_NCCargocheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _Crew_class)}) or {(_tp in _Crew_class)}) then {_Crewcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _NCrewInf_class)}) or {(_tp in _NCrewInf_class)}) then {_NCrewInfcheck = true;_Othercheck = false};
+        if (((_grp == _grpD) and {(_Tvh in _Support_class)}) or {(_tp in _Support_class)}) then {_Supportcheck = true;_NCrewInfcheck = false;_Othercheck = false};
 
-            if ((_Tvh in _NCCargo_class) and {(_x == (assignedDriver _asV)) and {((count (units (group _x))) == 1) and {not ((_ATinfcheck) or {(_AAinfcheck) or {(_reconcheck) or {(_FOcheck) or {(_sniperscheck)}}}})}}}) then {_NCrewInfcheck = false;_Othercheck = false};
+        if ((_Tvh in _NCCargo_class) and {(_x == (assignedDriver _asV)) and {((count (units (group _x))) == 1) and {not ((_ATinfcheck) or {(_AAinfcheck) or {(_reconcheck) or {(_FOcheck) or {(_sniperscheck)}}}})}}}) then {_NCrewInfcheck = false;_Othercheck = false};
 
-            _vh = vehicle _x;
+        _vh = vehicle _x;
 
-            if (_SpecForcheck) then {if not (_vh in _SpecFor) then {_SpecFor pushBack _vh};if not (_grp in _SpecForG) then {_SpecForG pushBack _grp}};
-            if (_reconcheck) then {if not (_vh in _recon) then {_recon pushBack _vh};if not (_grp in _reconG) then {_reconG pushBack _grp}};
-            if (_FOcheck) then {if not (_vh in _FO) then {_FO pushBack _vh};if not (_grp in _FOG) then {_FOG pushBack _grp}};
-            if (_sniperscheck) then {if not (_vh in _snipers) then {_snipers pushBack _vh};if not (_grp in _snipersG) then {_snipersG pushBack _grp}};
-            if (_ATinfcheck) then {if not (_vh in _ATinf) then {_ATinf pushBack _vh};if not (_grp in _ATinfG) then {_ATinfG pushBack _grp}};
-            if (_AAinfcheck) then {if not (_vh in _AAinf) then {_AAinf pushBack _vh};if not (_grp in _AAinfG) then {_AAinfG pushBack _grp}};
-            if (_Infcheck) then {if not (_vh in _Inf) then {_FValue = _FValue + 1;_Inf pushBack _vh};if not (_grp in _InfG) then {_InfG pushBack _grp}};
-            if (_Artcheck) then {if not (_vh in _Art) then {_FValue = _FValue + 3;_Art pushBack _vh};if not (_grp in _ArtG) then {_ArtG pushBack _grp}};
-            if (_HArmorcheck) then {if not (_vh in _HArmor) then {_FValue = _FValue + 10;_HArmor pushBack _vh};if not (_grp in _HArmorG) then {_HArmorG pushBack _grp}};
-            if (_MArmorcheck) then {if not (_vh in _MArmor) then {_MArmor pushBack _vh};if not (_grp in _MArmorG) then {_MArmorG pushBack _grp}};
-            if (_LArmorcheck) then {if not (_vh in _LArmor) then {_FValue = _FValue + 5;_LArmor pushBack _vh};if not (_grp in _LArmorG) then {_LArmorG pushBack _grp}};
-            if (_LArmorATcheck) then {if not (_vh in _LArmorAT) then {_LArmorAT pushBack _vh};if not (_grp in _LArmorATG) then {_LArmorATG pushBack _grp}};
-            if (_Carscheck) then {if not (_vh in _Cars) then {_FValue = _FValue + 3;_Cars pushBack _vh};if not (_grp in _CarsG) then {_CarsG pushBack _grp}};
-            if (_Aircheck) then {if not (_vh in _Air) then {_FValue = _FValue + 15;_Air pushBack _vh};if not (_grp in _AirG) then {_AirG pushBack _grp}};
-            if (_BAircheck) then {if not (_vh in _BAir) then {_BAir pushBack _vh};if not (_grp in _BAirG) then {_BAirG pushBack _grp}};
-            if (_RAircheck) then {if not (_vh in _RAir) then {_RAir pushBack _vh};if not (_grp in _RAirG) then {_RAirG pushBack _grp}};
-            if (_NCAircheck) then {if not (_vh in _NCAir) then {_NCAir pushBack _vh};if not (_grp in _NCAirG) then {_NCAirG pushBack _grp}};
-            if (_Navalcheck) then {if not (_vh in _Naval) then {_Naval pushBack _vh};if not ((group _vh) in _NavalG) then {_NavalG pushBackUnique (group _vh)}};
-            if (_Staticcheck) then {if not (_vh in _Static) then {_FValue = _FValue + 1;_Static pushBack _vh};if not (_grp in _StaticG) then {_StaticG pushBack _grp}};
-            if (_StaticAAcheck) then {if not (_vh in _StaticAA) then {_StaticAA pushBack _vh};if not (_grp in _StaticAAG) then {_StaticAAG pushBack _grp}};
-            if (_StaticATcheck) then {if not (_vh in _StaticAT) then {_StaticAT pushBack _vh};if not (_grp in _StaticATG) then {_StaticATG pushBack _grp}};
-            if (_Supportcheck) then {if not (_vh in _Support) then {_Support pushBack _vh};if not (_grp in _SupportG) then {_SupportG pushBack _grp}};
-            if (_Cargocheck) then {if not (_vh in _Cargo) then {_Cargo pushBack _vh};if not (_grp in _CargoG) then {_CargoG pushBack _grp}};
-            if (_NCCargocheck) then {if not (_vh in _NCCargo) then {_NCCargo pushBack _vh};if not (_grp in _NCCargoG) then {_NCCargoG pushBack _grp}};
-            if (_Crewcheck) then {if not (_vh in _Crew) then {_Crew pushBack _vh};if not (_grp in _CrewG) then {_CrewG pushBack _grp}};
-            if (_NCrewInfcheck) then {if not (_vh in _NCrewInf) then {_NCrewInf pushBack _vh};if not (_grp in _NCrewInfG) then {_NCrewInfG pushBack _grp}};
+        if (_SpecForcheck) then {if not (_vh in _SpecFor) then {_SpecFor pushBack _vh};if not (_grp in _SpecForG) then {_SpecForG pushBack _grp}};
+        if (_reconcheck) then {if not (_vh in _recon) then {_recon pushBack _vh};if not (_grp in _reconG) then {_reconG pushBack _grp}};
+        if (_FOcheck) then {if not (_vh in _FO) then {_FO pushBack _vh};if not (_grp in _FOG) then {_FOG pushBack _grp}};
+        if (_sniperscheck) then {if not (_vh in _snipers) then {_snipers pushBack _vh};if not (_grp in _snipersG) then {_snipersG pushBack _grp}};
+        if (_ATinfcheck) then {if not (_vh in _ATinf) then {_ATinf pushBack _vh};if not (_grp in _ATinfG) then {_ATinfG pushBack _grp}};
+        if (_AAinfcheck) then {if not (_vh in _AAinf) then {_AAinf pushBack _vh};if not (_grp in _AAinfG) then {_AAinfG pushBack _grp}};
+        if (_Infcheck) then {if not (_vh in _Inf) then {_FValue = _FValue + 1;_Inf pushBack _vh};if not (_grp in _InfG) then {_InfG pushBack _grp}};
+        if (_Artcheck) then {if not (_vh in _Art) then {_FValue = _FValue + 3;_Art pushBack _vh};if not (_grp in _ArtG) then {_ArtG pushBack _grp}};
+        if (_HArmorcheck) then {if not (_vh in _HArmor) then {_FValue = _FValue + 10;_HArmor pushBack _vh};if not (_grp in _HArmorG) then {_HArmorG pushBack _grp}};
+        if (_MArmorcheck) then {if not (_vh in _MArmor) then {_MArmor pushBack _vh};if not (_grp in _MArmorG) then {_MArmorG pushBack _grp}};
+        if (_LArmorcheck) then {if not (_vh in _LArmor) then {_FValue = _FValue + 5;_LArmor pushBack _vh};if not (_grp in _LArmorG) then {_LArmorG pushBack _grp}};
+        if (_LArmorATcheck) then {if not (_vh in _LArmorAT) then {_LArmorAT pushBack _vh};if not (_grp in _LArmorATG) then {_LArmorATG pushBack _grp}};
+        if (_Carscheck) then {if not (_vh in _Cars) then {_FValue = _FValue + 3;_Cars pushBack _vh};if not (_grp in _CarsG) then {_CarsG pushBack _grp}};
+        if (_Aircheck) then {if not (_vh in _Air) then {_FValue = _FValue + 15;_Air pushBack _vh};if not (_grp in _AirG) then {_AirG pushBack _grp}};
+        if (_BAircheck) then {if not (_vh in _BAir) then {_BAir pushBack _vh};if not (_grp in _BAirG) then {_BAirG pushBack _grp}};
+        if (_RAircheck) then {if not (_vh in _RAir) then {_RAir pushBack _vh};if not (_grp in _RAirG) then {_RAirG pushBack _grp}};
+        if (_NCAircheck) then {if not (_vh in _NCAir) then {_NCAir pushBack _vh};if not (_grp in _NCAirG) then {_NCAirG pushBack _grp}};
+        if (_Navalcheck) then {if not (_vh in _Naval) then {_Naval pushBack _vh};if not ((group _vh) in _NavalG) then {_NavalG pushBackUnique (group _vh)}};
+        if (_Staticcheck) then {if not (_vh in _Static) then {_FValue = _FValue + 1;_Static pushBack _vh};if not (_grp in _StaticG) then {_StaticG pushBack _grp}};
+        if (_StaticAAcheck) then {if not (_vh in _StaticAA) then {_StaticAA pushBack _vh};if not (_grp in _StaticAAG) then {_StaticAAG pushBack _grp}};
+        if (_StaticATcheck) then {if not (_vh in _StaticAT) then {_StaticAT pushBack _vh};if not (_grp in _StaticATG) then {_StaticATG pushBack _grp}};
+        if (_Supportcheck) then {if not (_vh in _Support) then {_Support pushBack _vh};if not (_grp in _SupportG) then {_SupportG pushBack _grp}};
+        if (_Cargocheck) then {if not (_vh in _Cargo) then {_Cargo pushBack _vh};if not (_grp in _CargoG) then {_CargoG pushBack _grp}};
+        if (_NCCargocheck) then {if not (_vh in _NCCargo) then {_NCCargo pushBack _vh};if not (_grp in _NCCargoG) then {_NCCargoG pushBack _grp}};
+        if (_Crewcheck) then {if not (_vh in _Crew) then {_Crew pushBack _vh};if not (_grp in _CrewG) then {_CrewG pushBack _grp}};
+        if (_NCrewInfcheck) then {if not (_vh in _NCrewInf) then {_NCrewInf pushBack _vh};if not (_grp in _NCrewInfG) then {_NCrewInfG pushBack _grp}};
 
-        }
-    forEach (units _x)
-    }
-forEach _friends;
+    } forEach (units _x)
+} forEach _friends;
 
 _HQ setVariable [QEGVAR(boss,fValue),_FValue];
 
@@ -272,13 +270,11 @@ _CargoG = _CargoG - (_CargoAirEx + _CargoLandEx + (_HQ getVariable [QEGVAR(core,
 _HQ setVariable [QGVAR(cargoAirEx),_CargoAirEx];
 _HQ setVariable [QGVAR(cargoLandEx),_CargoLandEx];
 
-    {
-    if not (_x in _SupportG) then
-        {
-        _SupportG pushBack _x
-        }
-    }
-forEach (_HQ getVariable [QEGVAR(core,ammoDrop),[]]);
+{
+    if not (_x in _SupportG) then {
+        _SupportG pushBack _x;
+    };
+} forEach (_HQ getVariable [QEGVAR(core,ammoDrop),[]]);
 
 _HQ setVariable [QGVAR(nCrewInf),_NCrewInf];
 _HQ setVariable [QEGVAR(core,nCrewInfG),_NCrewInfG];
