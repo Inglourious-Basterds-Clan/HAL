@@ -1,18 +1,10 @@
 #include "..\script_component.hpp"
 // Originally from nr6_hal/Front.sqf -- front-line detection
 
-_SCRname = "Front";
+private _code = {
+	params ["_HQ","_front","_ia"];
 
-private ["_front","_pos","_att","_XAxis","_YAxis","_dir","_isRec","_code","_code2"];
-
-_code =
-	{
-	_HQ = _this select 0;
-	_front = _this select 1;
-	_ia = _this select 2;
-
-	while {!(isNull _HQ)} do
-		{
+	while {!(isNull _HQ)} do {
 		sleep 5;
 
 		_ia setMarkerPosLocal (position _front);
@@ -20,81 +12,66 @@ _code =
 		_ia setMarkerSize (size _front);
 
 		if (_HQ getVariable [QEGVAR(common,kIA),false]) exitWith {}
-		};
-
-	deleteMarker _ia
 	};
 
-_code2 =
-	{
-	_HQ = _this select 0;
-	_front = _this select 1;
-	_isRec = _this select 2;
-	_pos = _this select 3;
-	_XAxis = _this select 4;
-	_YAxis = _this select 5;
-	_dir = _this select 6;
-	_code = _this select 7;
+	deleteMarker _ia
+};
 
-	_alive = true;
+private _code2 = {
+	params ["_HQ","_front","_isRectangle","_position","_xAxis","_yAxis","_direction","_code"];
 
-	waitUntil
-		{
+	private _alive = true;
+
+	waitUntil {
 		sleep 5;
 
 		_alive = true;
 
-		switch (true) do
-			{
+		switch (true) do {
 			case (isNil "_HQ") : {_alive = false};
 			case (isNull _HQ) : {_alive = false};
 			case (({alive _x} count (units _HQ)) < 1) : {_alive = false};
-			};
-
-		_debug = _HQ getVariable QEGVAR(common,debug);
-
-		(!(isNil "_debug") or !(_alive))
 		};
+
+		private _debug = _HQ getVariable QEGVAR(common,debug);
+
+		(!(isNil "_debug") || !(_alive))
+	};
 
 	if !(_alive) exitWith {};
 
-	if (_HQ getVariable [QEGVAR(common,debug),false]) then
-		{
+	if (_HQ getVariable [QEGVAR(common,debug),false]) then {
 		_shape = "ELLIPSE";
-		if (_isRec) then {_shape = "RECTANGLE"};
+		if (_isRectangle) then {_shape = "RECTANGLE"};
 
 		_ia = "markFront" + (str _HQ);
-		_ia = createMarker [_ia,_pos];
+		_ia = createMarker [_ia,_position];
 		_ia setMarkerColorLocal "ColorRed";
 		_ia setMarkerShapeLocal _shape;
-		_ia setMarkerSizeLocal [_XAxis, _YAxis];
-		_ia setMarkerDirLocal _dir;
+		_ia setMarkerSizeLocal [_xAxis, _yAxis];
+		_ia setMarkerDirLocal _direction;
 		_ia setMarkerBrushLocal "Border";
 		_ia setMarkerColor "ColorKhaki";
 		_SCRname = "Front2";
-		[[_HQ,_front,_ia],_code] call EFUNC(common,spawn)
-		}
-	};
-
-
-	{
-	_front = _x getVariable [QEGVAR(common,front),objNull];
-	if !(isNull _front) then
-		{
-		_pos = position _front;
-		_att = triggerArea _front;
-		_XAxis = _att select 0;
-		_YAxis = _att select 1;
-		_dir = _att select 2;
-		_isRec = _att select 3;
-
-		_front = createLocation ["Name", _pos, _XAxis, _YAxis];
-		_front setDirection _dir;
-		_front setRectangular _isRec;
-
-		_x setVariable [QEGVAR(common,front),_front];
-
-		[[_x,_front,_isRec,_pos,_XAxis,_YAxis,_dir,_code],_code2] call EFUNC(common,spawn)
-		}
+		[[_HQ, _front, _ia], _code] call EFUNC(common,spawn)
 	}
-forEach GVAR(allHQ);
+};
+
+
+{
+	private _front = _x getVariable [QEGVAR(common,front), objNull];
+	if !(isNull _front) then {
+		private _position = position _front;
+		private _area = triggerArea _front;
+
+		_area params ["_xAxis","_yAxis","_direction","_isRectangle"];
+
+		_front = createLocation ["Name", _position, _xAxis, _yAxis];
+		_front setDirection _direction;
+		_front setRectangular _isRectangle;
+
+		_x setVariable [QEGVAR(common,front), _front];
+
+		[[_x, _front, _isRectangle, _position, _xAxis, _yAxis, _direction, _code], _code2] call EFUNC(common,spawn);
+	};
+} forEach GVAR(allHQ);

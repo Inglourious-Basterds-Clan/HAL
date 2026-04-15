@@ -1,3 +1,4 @@
+PREP(EnemyScan);
 PREP(HQSitRep);
 PREP(HQSitRepB);
 PREP(HQSitRepC);
@@ -6,9 +7,7 @@ PREP(HQSitRepE);
 PREP(HQSitRepF);
 PREP(HQSitRepG);
 PREP(HQSitRepH);
-PREP(enemyScan);
 PREP(front);
-PREP(varInit);
 PREP(init);
-PREP(mark);
 PREP(personality);
+PREP(varInit);

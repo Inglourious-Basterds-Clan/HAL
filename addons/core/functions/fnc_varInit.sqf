@@ -28,21 +28,18 @@ GVAR(rocket_A3) = GVAR(rocketArty) + ["b_mbt_01_mlrs_f"] - RHQs_RocketArty;
 
 GVAR(allArty) = GVAR(howitzer) + GVAR(mortar) + GVAR(rocket) + GVAR(mortar_A3) + GVAR(sPMortar_A3) + GVAR(rocket_A3);
 
+{
     {
-        {
         GVAR(allArty) pushBack (toLower _x)
-        }
-    forEach (_x select 0)
-    }
-forEach GVAR(otherArty);
+    } forEach (_x select 0)
+} forEach GVAR(otherArty);
 
 // Populate hal_common_allArty with the same combined list.
 // fnc_cff_tgt.sqf reads GVAR(allArty) from the common component namespace.
 // fnc_presentRHQ.sqf also pushBackUnique custom entries into it at runtime.
 EGVAR(common,allArty) = +GVAR(allArty);
 
-GVAR(smokeMuzzles) =
-    [
+GVAR(smokeMuzzles) = [
     ["SmokeShellMuzzle",["SmokeShell"]],
     ["SmokeShellYellowMuzzle",["SmokeShellYellow"]],
     ["SmokeShellGreenMuzzle",["SmokeShellGreen"]],
@@ -52,13 +49,12 @@ GVAR(smokeMuzzles) =
     ["SmokeShellBlueMuzzle",["SmokeShellBlue"]],
     ["EGLM",["1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell","1Rnd_SmokeYellow_Grenade_shell","1Rnd_SmokePurple_Grenade_shell","1Rnd_SmokeBlue_Grenade_shell","1Rnd_SmokeOrange_Grenade_shell"]],
     ["GL_3GL_F",["1Rnd_Smoke_Grenade_shell","1Rnd_SmokeRed_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell","1Rnd_SmokeYellow_Grenade_shell","1Rnd_SmokePurple_Grenade_shell","1Rnd_SmokeBlue_Grenade_shell","1Rnd_SmokeOrange_Grenade_shell","3Rnd_Smoke_Grenade_shell","3Rnd_SmokeRed_Grenade_shell","3Rnd_SmokeGreen_Grenade_shell","3Rnd_SmokeYellow_Grenade_shell","3Rnd_SmokePurple_Grenade_shell","3Rnd_SmokeBlue_Grenade_shell","3Rnd_SmokeOrange_Grenade_shell"]]
-    ];
+];
 
-GVAR(flareMuzzles) =
-    [
+GVAR(flareMuzzles) = [
     ["EGLM",["UGL_FlareWhite_F","UGL_FlareGreen_F","UGL_FlareRed_F","UGL_FlareYellow_F","UGL_FlareCIR_F"]],
     ["GL_3GL_F",["UGL_FlareWhite_F","UGL_FlareGreen_F","UGL_FlareRed_F","UGL_FlareYellow_F","UGL_FlareCIR_F","3Rnd_UGL_FlareWhite_F","3Rnd_UGL_FlareGreen_F","3Rnd_UGL_FlareRed_F","3Rnd_UGL_FlareYellow_F","3Rnd_UGL_FlareCIR_F"]]
-    ];
+];
 
 if (isNil ("RydART_Amount")) then {RydART_Amount = 6};
 if (isNil (QGVAR(active))) then {GVAR(active) = false};
@@ -172,10 +168,8 @@ if (isNil (QGVAR(pMCLib))) then {GVAR(pMCLib) = false};
 // Call-sign noun pool — read with +GVAR(callSignsN) (array copy, no nil guard) by all
 // fnc_HQSitRep*.sqf variants. Must be seeded here before those loops start.
 // Originally from nr6_hal/VarInit.sqf lines 196-233 (RydHQ_CallSignsN).
-if (isNil (QGVAR(callSignsN))) then
-    {
-    GVAR(callSignsN) =
-        [
+if (isNil (QGVAR(callSignsN))) then {
+    GVAR(callSignsN) = [
         [
         ["PERSEUS",[]],
         ["AJAX",[]],
@@ -208,5 +202,5 @@ if (isNil (QGVAR(callSignsN))) then
         ["TYPHON",[]],
         ["POLYPHEMUS",[]]
         ]
-        ]
-    };
+    ];
+};
