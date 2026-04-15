@@ -1,0 +1,12 @@
+name = "NR6-HAL Commander";
+picture = "";
+actionName = "GitHub";
+action = "https://github.com/NinjaRider600/NR6-HAL";
+description = "NR6-HAL - AI Command and Control system for Arma 3";
+logo = "";
+logoOver = "";
+tooltip = "NR6-HAL";
+tooltipOwned = "NR6-HAL";
+overview = "NR6-HAL provides an autonomous AI commander capable of managing infantry, vehicles, artillery, and reinforcements.";
+author = "MiszczuZPolski";
+overviewPicture = "";
