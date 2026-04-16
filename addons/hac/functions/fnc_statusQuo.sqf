@@ -199,8 +199,10 @@ while {true} do {
         private _KnEnemy = _knownE select _z;
 
         {
-            if ((_x knowsAbout _KnEnemy) > 0.01) then {_HQ reveal [_KnEnemy,2]}
-        } forEach _friends
+            if ((_x knowsAbout _KnEnemy) > 0.01) then {
+                _HQ reveal [_KnEnemy, 2];
+            };
+        } forEach _friends;
     };
 
     _cycleC = _cycleC + 1;
