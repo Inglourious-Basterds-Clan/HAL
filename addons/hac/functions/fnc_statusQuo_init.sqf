@@ -15,8 +15,8 @@ params ["_HQ", "_cycleC", "_lastReset"];
 private _orderFirst = _HQ getVariable QGVAR(orderfirst);
 
 if (isNil ("_orderFirst")) then {
-    _HQ setVariable [QGVAR(orderfirst),true];
-    _HQ setVariable [QGVAR(flankReady),false];
+    _HQ setVariable [QGVAR(orderfirst), true];
+    _HQ setVariable [QGVAR(flankReady), false];
 };
 
 if (_cycleC > 1) then {

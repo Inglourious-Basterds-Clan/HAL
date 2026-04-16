@@ -31,7 +31,7 @@ private _obj = _HQ getVariable QEGVAR(core,obj);
 private _moraleInfl = (_gauss100 * (_HQ getVariable [QEGVAR(core,offTend), 1])) + (_HQ getVariable [QEGVAR(core,inertia), 0]) + _morale;
 private _enemyInfl = (_EValue/(_FValue max 1)) * 40;
 
-if (((_moraleInfl > _enemyInfl) && !((count _objs) < 1) and {!((_HQ getVariable [QEGVAR(core,order),"ATTACK"]) in ["DEFEND"])}) || {(_HQ getVariable [QEGVAR(core,berserk),false])} || {(_moraleInfl > _enemyInfl) && (_HQ getVariable ["LastStance","At"] == "De") && ((((75)*(_HQ getVariable [QEGVAR(core,recklessness),0.5])*(count (_HQ getVariable [QEGVAR(common,knEnemiesG),[]]))) >= (random 100)) || ((_HQ getVariable [QEGVAR(core,attackAlways),false]) && (_HQ getVariable ["LastStance","At"] == "De") && ((count (_HQ getVariable [QEGVAR(common,knEnemiesG),[]])) > 0)))}) then {
+if (((_moraleInfl > _enemyInfl) && !((count _objs) < 1) && {!((_HQ getVariable [QEGVAR(core,order),"ATTACK"]) in ["DEFEND"])}) || {(_HQ getVariable [QEGVAR(core,berserk),false])} || {(_moraleInfl > _enemyInfl) && (_HQ getVariable ["LastStance","At"] == "De") && ((((75)*(_HQ getVariable [QEGVAR(core,recklessness),0.5])*(count (_HQ getVariable [QEGVAR(common,knEnemiesG),[]]))) >= (random 100)) || ((_HQ getVariable [QEGVAR(core,attackAlways),false]) && (_HQ getVariable ["LastStance","At"] == "De") && ((count (_HQ getVariable [QEGVAR(common,knEnemiesG),[]])) > 0)))}) then {
     private _lastS = _HQ getVariable ["LastStance","At"];
     if ((_lastS == "De") or (_cycleC == 1)) then {
         if ((random 100) < EGVAR(core,aIChatDensity)) then {[(_HQ getVariable ["leaderHQ",(leader _HQ)]),GVAR(aIC_OffStance),"OffStance"] call EFUNC(common,AIChatter)};
@@ -53,7 +53,7 @@ if (((_moraleInfl > _enemyInfl) && !((count _objs) < 1) and {!((_HQ getVariable 
 
 // SF attack dispatch
 if (((((_HQ getVariable [QEGVAR(core,circumspection),0.5]) + (_HQ getVariable [QEGVAR(core,fineness),0.5]))/2) + 0.1) > (random 1.2)) then {
-    private _SFcount = {!(_x getVariable ["Busy" + (str _x),false]) and !(_x getVariable ["Unable",false]) and !(_x getVariable ["Resting" + (str _x),false])} count (_SpecForG - (_HQ getVariable [QEGVAR(core,sFBodyGuard),[]]));
+    private _SFcount = {!(_x getVariable ["Busy" + (str _x),false]) && !(_x getVariable ["Unable",false]) && !(_x getVariable ["Resting" + (str _x),false])} count (_SpecForG - (_HQ getVariable [QEGVAR(core,sFBodyGuard),[]]));
 
     if (_SFcount > 0) then {
         private _isNight = [] call EFUNC(common,isNight);

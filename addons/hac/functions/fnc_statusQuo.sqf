@@ -25,7 +25,8 @@ while {true} do {
     // S2: allGroups scan + friends/enemies/known-enemy classification + radio channel
     private _scanResult = [_HQ, _civF, _excl] call FUNC(statusQuo_scanFriends);
     _scanResult params ["_enemies", "_friends", "_excl", "_knownE", "_knownEG", "_KnEnPos",
-                        "_cInitial", "_CCurrent", "_CLast", "_checkFriends"];
+    "_cInitial", "_CCurrent", "_CLast", "_checkFriends"
+    ];
 
     // S3a: Friendly force classification into typed arrays
     private _fValue = 0;
@@ -38,7 +39,8 @@ while {true} do {
         "_SpecForG", "_reconG", "_FOG", "_snipersG", "_ATinfG", "_AAinfG", "_InfG", "_ArtG",
         "_HArmorG", "_MArmorG", "_LArmorG", "_LArmorATG", "_CarsG", "_AirG", "_BAirG", "_RAirG",
         "_NCAirG", "_NavalG", "_StaticG", "_StaticAAG", "_StaticATG", "_SupportG", "_CargoG",
-        "_NCCargoG", "_OtherG", "_CrewG", "_NCrewInfG"];
+        "_NCCargoG", "_OtherG", "_CrewG", "_NCrewInfG"
+    ];
 
     // S4: Publish ArtyFriends/ArtyArt globals for each named HQ (A-H)
     [_HQ, _friends, _Art, _ArtG] call FUNC(statusQuo_artyPublish);
@@ -47,25 +49,28 @@ while {true} do {
     private _eValue = 0;
     private _enemyClassResult = [_HQ, _knownEG, _eValue] call FUNC(statusQuo_classifyEnemies);
     _enemyClassResult params ["_EValue", "_EnInf", "_EnInfG", "_EnHArmor", "_EnMArmor", "_EnLArmor",
-        "_EnArt", "_EnArtG", "_EnStaticG", "_EnRAirG", "_EnNCrewInf", "_EnNCrewInfG"];
+        "_EnArt", "_EnArtG", "_EnStaticG", "_EnRAirG", "_EnNCrewInf", "_EnNCrewInfG"
+    ];
 
     // S5: Loss tracking and morale delta
     private _morale = [_HQ, _cInitial, _CCurrent, _CLast, _knownE] call FUNC(statusQuo_morale);
 
     // KIA exit
-    if (_HQ getVariable [QEGVAR(common,kIA),false]) exitWith {EGVAR(core,allHQ) = EGVAR(core,allHQ) - [_HQ]};
+    if (_HQ getVariable [QEGVAR(common,kIA), false]) exitWith {EGVAR(core,allHQ) = EGVAR(core,allHQ) - [_HQ]};
 
     // Arty fire for effect
-    private _Artdebug = _HQ getVariable [QEGVAR(common,debug),false];
-    if (_HQ getVariable [QEGVAR(core,artyMarks),false]) then {_Artdebug = true};
-    if (((count _knownE) > 0) and {((count _ArtG) > 0) and {((_HQ getVariable [QEGVAR(core,artyShells),1]) > 0)}}) then {[_ArtG,_knownE,(_EnHArmor + _EnMArmor + _EnLArmor),_friends,_Artdebug,(_HQ getVariable ["leaderHQ",(leader _HQ)])] call EFUNC(common,cff)};
+    private _Artdebug = _HQ getVariable [QEGVAR(common,debug), false];
+    if (_HQ getVariable [QEGVAR(core,artyMarks), false]) then {_Artdebug = true};
+    if (((count _knownE) > 0) && {((count _ArtG) > 0) && {((_HQ getVariable [QEGVAR(core,artyShells),1]) > 0)}}) then {
+        [_ArtG, _knownE, (_EnHArmor + _EnMArmor + _EnLArmor), _friends, _Artdebug, (_HQ getVariable ["leaderHQ", (leader _HQ)])] call EFUNC(common,cff);
+    };
 
     // S6: Panic/flee, doctrine roll, arty prep
     private _doctrineResult = [_HQ, _friends, _knownE, _knownEG, _SpecForG, _ArtG, _morale, _cycleC, _CCurrent] call FUNC(statusQuo_doctrine);
     _doctrineResult params ["_AAO", "_EBT"];
 
     // Compute delay
-    private _delay = ((count _friends) * 5) + (round (((10 + (count _friends))/(0.5 + (_HQ getVariable [QEGVAR(core,reflex),0.5]))) * (_HQ getVariable [QEGVAR(core,commDelay),1])));
+    private _delay = ((count _friends) * 5) + (round (((10 + (count _friends))/(0.5 + (_HQ getVariable [QEGVAR(core,reflex), 0.5]))) * (_HQ getVariable [QEGVAR(core,commDelay), 1])));
     _HQ setVariable [QGVAR(myDelay),_delay];
 
     // S7: SimpleMode objective tracking + respawn points
@@ -74,7 +79,7 @@ while {true} do {
 
     // S8: Attack/defend dispatch + SF attack
     [_HQ, _objs, _SpecForG, _knownEG, _EnHArmor, _EnMArmor, _EnLArmor, _EnArtG, _EnStaticG,
-     _FValue, _EValue, _morale, _AAO, _cycleC, _delay] call FUNC(statusQuo_attackDispatch);
+    _FValue, _EValue, _morale, _AAO, _cycleC, _delay] call FUNC(statusQuo_attackDispatch);
 
     // S9: HQ self-relocation
     [_HQ, _knownEG, _AAO, _cycleC] call FUNC(statusQuo_hqReloc);
@@ -94,134 +99,109 @@ while {true} do {
     private _ctEScan = time;
     private _ctGarr = time;
 
-    _HQ setVariable [QEGVAR(core,pending),false];
+    _HQ setVariable [QEGVAR(core,pending), false];
 
-    waitUntil
-        {
+    waitUntil {
         sleep 1;
 
-        switch (true) do
-            {
+        switch (true) do {
             case (isNull _HQ) : {_alive = false};
             case (({alive _x} count (units _HQ)) == 0) : {_alive = false};
-            case (_HQ getVariable [QEGVAR(core,surrender),false]) : {_alive = false};
-            case (_HQ getVariable [QEGVAR(common,kIA),false]) : {_alive = false};
-            };
+            case (_HQ getVariable [QEGVAR(core,surrender), false]) : {_alive = false};
+            case (_HQ getVariable [QEGVAR(common,kIA), false]) : {_alive = false};
+        };
 
-        if (_alive) then
-            {
-            if (((time - _ctRev) >= 20) or (((time - _ct) > _delay) and (_delay <= 20))) then
-                {
+        if (_alive) then {
+            if (((time - _ctRev) >= 20) || (((time - _ct) > _delay) && (_delay <= 20))) then {
                 _ctRev = time;
                 [_HQ] call EFUNC(hac,rev);
-                };
+            };
 
-            if (((count (_HQ getVariable [QGVAR(support),[]])) > 0) and (_cycleC > 2)) then
-                {
-                if (((time - _ctMedS) >= 25) or (((time - _ct) > _delay) and (_delay <= 25))) then
-                    {
-                    if (_HQ getVariable [QEGVAR(core,sMed),true]) then
-                        {
+            if (((count (_HQ getVariable [QGVAR(support),[]])) > 0) && (_cycleC > 2)) then {
+                if (((time - _ctMedS) >= 25) || (((time - _ct) > _delay) && (_delay <= 25))) then {
+                    if (_HQ getVariable [QEGVAR(core,sMed), true]) then {
                         _ctMedS = time;
                         [_HQ] call FUNC(suppMed);
-                        }
                     };
+                };
 
-                if (((time - _ctFuel) >= 25) or (((time - _ct) > _delay) and (_delay <= 25))) then
-                    {
-                    if (_HQ getVariable [QEGVAR(core,sFuel),true]) then
-                        {
+                if (((time - _ctFuel) >= 25) || (((time - _ct) > _delay) && (_delay <= 25))) then {
+                    if (_HQ getVariable [QEGVAR(core,sFuel), true]) then {
                         _ctFuel = time;
                         [_HQ] call FUNC(suppFuel);
-                        }
                     };
+                };
 
-                if (((time - _ctRep) >= 25) or (((time - _ct) > _delay) and (_delay <= 25))) then
-                    {
-                    if (_HQ getVariable [QEGVAR(core,sRep),true]) then
-                        {
+                if (((time - _ctRep) >= 25) || (((time - _ct) > _delay) && (_delay <= 25))) then {
+                    if (_HQ getVariable [QEGVAR(core,sRep), true]) then {
                         _ctRep = time;
                         [_HQ] call FUNC(suppRep);
-                        }
                     };
                 };
+            };
 
-            if (((count ((_HQ getVariable [QGVAR(support),[]]) + (_HQ getVariable [QEGVAR(core,ammoDrop),[]]))) > 0) and (_cycleC > 2)) then
-                {
-                if (((time - _ctAmmo) >= 25) or (((time - _ct) > _delay) and (_delay <= 25))) then
-                    {
-                    if (_HQ getVariable [QEGVAR(core,sAmmo),true]) then
-                        {
+            if (((count ((_HQ getVariable [QGVAR(support),[]]) + (_HQ getVariable [QEGVAR(core,ammoDrop),[]]))) > 0) and (_cycleC > 2)) then {
+                if (((time - _ctAmmo) >= 25) || (((time - _ct) > _delay) && (_delay <= 25))) then {
+                    if (_HQ getVariable [QEGVAR(core,sAmmo),true]) then {
                         _ctAmmo = time;
                         [_HQ] call FUNC(suppAmmo);
-                        }
                     };
                 };
+            };
 
-            if (((time - _ctISF) >= 30) or (((time - _ct) > _delay) and (_delay <= 30))) then
-                {
+            if (((time - _ctISF) >= 30) || (((time - _ct) > _delay) && (_delay <= 30))) then {
                 _ctISF = time;
                 private _nPos = getPosATL (vehicle (leader _HQ));
 
-                if ((_nPos distance _HQlPos) > 10) then
-                    {
+                if ((_nPos distance _HQlPos) > 10) then {
                     _HQlPos = _nPos;
-
-                    [_HQ] call EFUNC(hac,sfIdleOrd)
-                    }
-                };
-
-            if (((time - _ctReloc) >= 60) or (((time - _ct) > _delay) and (_delay <= 60))) then
-                {
-                _ctReloc = time;
-                [_HQ] call EFUNC(hac,reloc)
-                };
-
-            if (((time - _ctLPos) >= 30) or (((time - _ct) > _delay) and (_delay <= 60))) then
-                {
-                _ctLPos = time;
-                [_HQ] call EFUNC(hac,lPos)
-                };
-
-            if (((time - _ctDesp) >= 60) or (((time - _ct) > _delay) and (_delay <= 60))) then
-                {
-                _ctDesp = time;
-                [_HQ] call EFUNC(hac,desperation)
-                };
-
-            if (((time - _ctEScan) >= 60) or (((time - _ct) > _delay) and (_delay <= 60))) then
-                {
-                _ctEScan = time;
-                [_HQ] call EFUNC(core,enemyScan)
-                };
-
-            if (((time - _ctGarr) >= 60) or (((time - _ct) > _delay) and (_delay <= 60))) then
-                {
-                _ctGarr = time;
-                [_HQ,(_snipers + _ATinf + _AAinf)] spawn FUNC(garrison)
+                    [_HQ] call EFUNC(hac,sfIdleOrd);
                 };
             };
 
-        (((time - _ct) > _delay) or not (_alive))
+            if (((time - _ctReloc) >= 60) || (((time - _ct) > _delay) && (_delay <= 60))) then {
+                _ctReloc = time;
+                [_HQ] call EFUNC(hac,reloc);
+            };
+
+            if (((time - _ctLPos) >= 30) || (((time - _ct) > _delay) && (_delay <= 60))) then {
+                _ctLPos = time;
+                [_HQ] call EFUNC(hac,lPos);
+            };
+
+            if (((time - _ctDesp) >= 60) || (((time - _ct) > _delay) && (_delay <= 60))) then {
+                _ctDesp = time;
+                [_HQ] call EFUNC(hac,desperation)
+            };
+
+            if (((time - _ctEScan) >= 60) || (((time - _ct) > _delay) && (_delay <= 60))) then {
+                _ctEScan = time;
+                [_HQ] call EFUNC(core,enemyScan);
+            };
+
+            if (((time - _ctGarr) >= 60) || (((time - _ct) > _delay) && (_delay <= 60))) then {
+                _ctGarr = time;
+                [_HQ,(_snipers + _ATinf + _AAinf)] spawn FUNC(garrison)
+            };
         };
 
-    if not (_alive) exitWith {EGVAR(core,allHQ) = EGVAR(core,allHQ) - [_HQ]};
+        (((time - _ct) > _delay) || !(_alive))
+    };
+
+    if !(_alive) exitWith {EGVAR(core,allHQ) = EGVAR(core,allHQ) - [_HQ]};
 
     // Post-cycle reveal
-        {
+    {
         _HQ reveal (vehicle (leader _x))
-        }
-    forEach _friends;
+    } forEach _friends;
 
-    for [{_z = 0},{_z < (count _knownE)},{_z = _z + 1}] do
-        {
+    for [{_z = 0}, {_z < (count _knownE)}, {_z = _z + 1}] do {
         private _KnEnemy = _knownE select _z;
 
-            {
+        {
             if ((_x knowsAbout _KnEnemy) > 0.01) then {_HQ reveal [_KnEnemy,2]}
-            }
-        forEach _friends
-        };
+        } forEach _friends
+    };
 
     _cycleC = _cycleC + 1;
 };
